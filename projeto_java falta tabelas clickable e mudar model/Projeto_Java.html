@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Stock Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg" style="background-color:darkslategrey">
+        <a class="navbar-brand" href="#" id="home"><strong>Home</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <strong>Add</strong>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">
+                            <button type="button" style="background-color: white" class="btn btn-sm" data-toggle="modal"
+                                data-target="#myModal1"> Product</button>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <button type="button" style="background-color: white" class="btn btn-sm" data-toggle="modal"
+                                data-target="#myModal2"> Shelf</button>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <strong>Update</strong>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">
+                            <button type="button" style="background-color: white" class="btn btn-sm" data-toggle="modal"
+                                data-target="#myModal3"> Product</button>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <button type="button" style="background-color: white" class="btn btn-sm" data-toggle="modal"
+                                data-target="#myModal4"> Shelf</button>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <strong>Delete</strong>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">
+                            <button type="button" style="background-color: white" class="btn btn-sm" data-toggle="modal"
+                                data-target="#myModal5"> Product</button>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <button type="button" style="background-color: white" class="btn btn-sm" data-toggle="modal"
+                                data-target="#myModal6"> Shelf</button>
+                        </a> </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search by Id" aria-label="Search" id="search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search_submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="modal" class="modal fade" tabindex="-1" role="dialog" id="myModal1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add a product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <br>
+                        <label for="discountValue"> DiscountValue: </label>
+                        <input type="text" id="discountValue">
+                        <br>
+                        <label for="IVA">IVA: </label>
+                        <input type="text" id="IVA">
+                        <br>
+                        <label for="pvp">pvp: </label>
+                        <input type="text" id="pvp">
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="addProduct" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" class="modal fade" tabindex="-1" role="dialog" id="myModal2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add a Shelf</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <br>
+                        <label for="capacity">Capacity: </label>
+                        <input type="text" id="capacity">
+                        <br>
+                        <label for="rentprice">RentPrice: </label>
+                        <input type="text" id="rentprice">
+                        <br>
+                        <label for="id_product">Product Id: </label>
+                        <input type="text" id="id_product">
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="addShelf" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" class="modal fade" tabindex="-1" role="dialog" id="myModal3">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Replace a product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="id_product_replace">Product Id: </label>
+                        <input type="text" id="id_product_replace">
+                        <br>
+                        <label for="new_discountValue"> New discountValue: </label>
+                        <input type="text" id="new_discountValue">
+                        <br>
+                        <label for="new_IVA">New IVA: </label>
+                        <input type="text" id="new_IVA">
+                        <br>
+                        <label for="new_pvp">New pvp: </label>
+                        <input type="text" id="new_pvp">
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="replace_product" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" class="modal fade" tabindex="-1" role="dialog" id="myModal4">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Replace a shelf</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="id_shelf_replace">Shelf Id: </label>
+                        <input type="text" id="id_shelf_replace">
+                        <br>
+                        <label for="new_capacity"> New capacity: </label>
+                        <input type="text" id="new_capacity">
+                        <br>
+                        <label for="new_rentprice">New rentprice: </label>
+                        <input type="text" id="new_rentprice">
+                        <br>
+                        <label for="new_product_id">New product Id: </label>
+                        <input type="text" id="new_product_id">
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="replace_shelf" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" class="modal fade" tabindex="-1" role="dialog" id="myModal5">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete a product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="id_product_delete">Product Id: </label>
+                        <input type="text" id="id_product_delete">
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="deleteProduct" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" class="modal fade" tabindex="-1" role="dialog" id="myModal6">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete a shelf</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="id_shelf_delete">Shelf Id: </label>
+                            <input type="text" id="id_shelf_delete">
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" id="deleteshelf" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <br><br><br>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <img src="https://static1.squarespace.com/static/56943184a2bab8c9489a05bd/59e3e3a0be42d611cf96541c/59e9691f18b27dc94c498661/1508469044574/digital-marketing-packages-icon-cariad-2015.png?format=500w"
+                            width="105%">
+                    </div>
+                    <div class="col-sm-9"><br><br>
+                        <button id="button_products" style="background-color: white" class="btn btn-block btn-lg btn-outline-dark"
+                            width="100%" height="100%">
+                            <h1>Products</h1>
+                        </button>
+                    </div>
+                </div>
+                <table class="table" id="table_products" style="background-color:white">
+                    <thead>
+                        <br><br>
+                        <tr class="border border-dark" style="background-color:rgb(160, 97, 68)">
+                            <th class="border border-dark" scope="col">Number</th>
+                            <th class="border border-dark" scope="col">discountValue</th>
+                            <th class="border border-dark" scope="col">IVA</th>
+                            <th class="border border-dark" scope="col">pvp</th>
+                            <th class="border border-dark" scope="col">Id</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody_products">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-6">
+                <br><br><br>
+                <div class="row">
+                    <div class="col-sm-3" style="background-color:white">
+                        <img src="https://http2.mlstatic.com/prateleira-gaveteira-azul-parafuso-pecas-chaves-c25-gavetas-D_NQ_NP_810470-MLB27392854937_052018-F.jpg"
+                            width="90%">
+                    </div>
+                    <div class="col-sm-9"><br><br>
+                        <button id="button_shelves" style="background-color: white" class="btn btn-block btn-lg btn-outline-dark"
+                            width="100%" height="100%">
+                            <h1>Shelves</h1>
+                        </button>
+                    </div>
+                </div>
+                <table class="table" id="table_shelves" style="background-color:white">
+                    <thead>
+                        <br><br>
+                        <tr class="border border-dark"style="background-color:rgb(160, 97, 68)">
+                            <th class="border border-dark" scope="col">Number</th>
+                            <th class="border border-dark" scope="col">Capacity</th>
+                            <th class="border border-dark" scope="col">rentPrice</th>
+                            <th class="border border-dark" scope="col">id</th>
+                            <th class="border border-dark" scope="col">productId</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody_shelves">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <script src="utils.js"></script>
+    <script src="classes.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>

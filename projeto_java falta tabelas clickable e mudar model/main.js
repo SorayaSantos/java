@@ -5,8 +5,14 @@ $(document).ready(function () {
 });
 
 $("#button_products").click(function(){
-    $("#tbody_products").html('');
+    console.log("aqui");
     $("#table_products").show();
+    // $("#tbody_products").html('');
+    $("#tbody_products").each(function(element){
+        console.log("Buu");
+        $(this).html('');
+    });
+    
 
     getDataProducts();
 });

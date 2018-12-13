@@ -6,7 +6,7 @@ function Home() {
 
 function getDataProducts() {
     $.ajax({
-        url: "https://mcupacademy.herokuapp.com/api/Products",
+        url: "http://localhost:8080/StocksManagement/api/products",
         type: 'GET',
         contentType: 'application/json',
         success: function (data) {
@@ -26,14 +26,14 @@ function get_TableProducts(products_all) {
         //   </tr>`)   
 
         var t_products = $('#table_products').DataTable();
-        t_products.clear().draw();
-        t_products.row.add([index, products_all[index].discountValue, products_all[index].iva, products_all[index].pvp, products_all[index].id]).draw();
+        //t_products.clear().draw();
+        t_products.row.add([index, products_all[index].discount, products_all[index].iva, products_all[index].pvp, products_all[index].id]).draw();
     }
     search_product = [];
 };
 function getDataShelves() {
     $.ajax({
-        url: "https://mcupacademy.herokuapp.com/api/Shelves",
+        url: "http://localhost:8080/StocksManagement/api/shelves",
         type: 'GET',
         contentType: 'application/json',
         success: function (data) {
@@ -55,8 +55,8 @@ function get_TableShelves(shelves_all) {
         //   </tr>`) 
 
         var t_shelves = $('#table_shelves').DataTable();
-        t_shelves.clear().draw();
-        t_shelves.row.add([index, shelves_all[index].capacity, shelves_all[index].rentPrice, shelves_all[index].id, shelves_all[index].productId]).draw();
+        //t_shelves.clear().draw();
+        t_shelves.row.add([index, shelves_all[index].capacity, shelves_all[index].price, shelves_all[index].id, shelves_all[index].product]).draw();
     }
     search_shelf = [];
 };

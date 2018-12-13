@@ -9,10 +9,8 @@ $("#button_products").click(function(){
     $("#table_products").show();
     // $("#tbody_products").html('');
     $("#tbody_products").each(function(element){
-        console.log("Buu");
         $(this).html('');
     });
-    
 
     getDataProducts();
 });
